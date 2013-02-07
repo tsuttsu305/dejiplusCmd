@@ -1,0 +1,155 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>net.dejiplus</groupId>
+   <artifactId>dejiplusCmd</artifactId>
+   <version>0.0.1-SNAPSHOT</version>
+   <name>dejiplusCmd</name>
+   <description>Minecraft dejiplusServer plugin</description>
+  
+   <!-- Properties -->
+   
+   <!-- Developer -->
+   
+   <!-- License -->
+   
+   <!-- SCM -->
+   <scm>
+      <url>https://github.com/dejiplusServer/dejiplusCmd.git</url>
+      <connection>scm:git:git://github.com/dejiplusServer/dejiplusCmd.git</connection>
+      <developerConnection>scm:git:git@github.com:dejiplusServer/dejiplusCmd.git</developerConnection>
+      <tag>master</tag>
+   </scm>
+   
+   <!-- CI -->
+   <!--
+   <ciManagement>
+      <system>jenkins</system>
+      <url>http://ci.dejiplus.net/</url>
+   </ciManagement>
+   -->
+   
+   <!-- Build -->
+   <build>
+      <finalName>${project.name}</finalName>
+      <sourceDirectory>${basedir}/src/main/java/</sourceDirectory>
+      
+      <!-- Plugins -->
+      <plugins>
+         
+         <!-- Replacer -->
+         <plugin>
+            <groupId>com.google.code.maven-replacer-plugin</groupId>
+            <artifactId>replacer</artifactId>
+            <version>1.5.0</version>
+            <executions>
+               <execution>
+                  <phase>prepare-package</phase>
+                  <goals>
+                     <goal>replace</goal>
+                  </goals>
+               </execution>
+            </executions>
+            <configuration>
+               <file>target/classes/plugin.yml</file>
+               <replacements>
+                  <replacement>
+                     <token>version-number-unknown</token>
+                     <value>${project.version}</value>
+                  </replacement>
+               </replacements>
+            </configuration>
+         </plugin>
+         
+         <!-- Maven Source -->
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>2.2</version>
+            <executions>
+               <execution>
+                  <id>attach-sources</id>
+                  <phase>package</phase>
+                  <goals>
+                     <goal>jar-no-fork</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+         
+         <!-- Maven Site -->
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+            <version>3.1</version>
+            <configuration>
+               <locales>ja</locales>
+               <inputEncoding>UTF-8</inputEncoding>
+               <outputEncoding>UTF-8</outputEncoding>
+            </configuration>
+         </plugin>
+          
+         <!-- JavaDoc -->
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>2.8.1</version>
+            <executions>
+               <execution>
+                  <id>javadoc-jar</id>
+                  <phase>verify</phase>
+                  <goals>
+                     <goal>jar</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+      </plugins>
+      
+      <!-- Resources -->
+      <resources>
+         <resource>
+            <targetPath>.</targetPath>
+            <filtering>true</filtering>
+            <directory>${basedir}/src/main/resources/</directory>
+            <includes>
+               <include>plugin.yml</include>
+            </includes>
+         </resource>
+      </resources>
+   </build>
+   
+   <!-- Reporting -->
+   <reporting>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>2.8.1</version>
+            <configuration>
+               <charset>UTF-8</charset>
+            </configuration>
+         </plugin>
+      </plugins>
+   </reporting>
+   
+   <!-- Repositories -->
+   <repositories>
+      <!-- Bukkit -->
+      <repository>
+         <id>Bukkit Official</id>
+         <url>http://repo.bukkit.org/content/groups/public/</url>
+      </repository>
+   </repositories>
+   
+   <!-- Dependencies -->
+   <dependencies>
+      <!-- Bukkit Dependency -->
+      <dependency>
+         <groupId>org.bukkit</groupId>
+         <artifactId>bukkit</artifactId>
+         <version>1.4.7-R0.2-SNAPSHOT</version>
+         <scope>provided</scope>
+      </dependency>
+   </dependencies>
+</project>

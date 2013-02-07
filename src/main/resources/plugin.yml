@@ -1,0 +1,5 @@
+name: dejiplusCmd
+version: version-number-unknown
+main: net.dejiplus.dejipluscmd.dejiplusCmd
+description: Minecraft dejiplusServer plugin
+website: http://www.dejiplus.net/
